@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colorful Navbar</title>
+<title>Responsive Navbar</title>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -32,6 +32,7 @@ body{
     position:fixed;
     top:0;
     width:100%;
+    z-index:1000;
 }
 
 .logo{
@@ -53,7 +54,7 @@ body{
     transition:.3s;
 }
 
-/* Different Colors */
+/* Link Colors */
 .home{color:#007BFF;}
 .about{color:#28A745;}
 .services{color:#FFC107;}
@@ -69,13 +70,21 @@ body{
     padding:10px 20px;
     border:none;
     background:#007BFF;
-    color:white;
+    color:#fff;
     border-radius:5px;
     cursor:pointer;
+    transition:.3s;
 }
 
 .btn:hover{
     background:#0056b3;
+}
+
+/* Hamburger */
+.menu-toggle{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
 }
 
 /* Sections */
@@ -89,17 +98,73 @@ section{
     padding-top:70px;
 }
 
-#home{background:#cce5ff;}
-#about{background:#d4edda;}
-#services{background:#fff3cd;}
-#contact{background:#f8d7da;}
-</style>
-</head>
+#home{
+    background:#cce5ff;
+}
 
+#about{
+    background:#d4edda;
+}
+
+#services{
+    background:#fff3cd;
+}
+
+#contact{
+    background:#f8d7da;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    .navbar{
+        padding:15px 20px;
+        flex-wrap:wrap;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .btn{
+        display:none;
+    }
+
+    .nav-links{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        background:#fff;
+        margin-top:15px;
+        gap:0;
+    }
+
+    .nav-links li{
+        text-align:center;
+        border-top:1px solid #ddd;
+    }
+
+    .nav-links a{
+        display:block;
+        padding:15px;
+    }
+
+    section{
+        font-size:30px;
+        text-align:center;
+        padding:90px 20px;
+    }
+}
+</style>
+
+</head>
 <body>
 
 <nav class="navbar">
+
     <div class="logo">MyLogo</div>
+
+    <div class="menu-toggle">&#9776;</div>
 
     <ul class="nav-links">
         <li><a href="#home" class="scroll-link home">Home</a></li>
@@ -109,25 +174,37 @@ section{
     </ul>
 
     <button class="btn">Login</button>
+
 </nav>
 
-<section id="home">Home</section>
-<section id="about">About</section>
-<section id="services">Services</section>
-<section id="contact">Contact</section>
+<section id="home">Home Section</section>
+<section id="about">About Section</section>
+<section id="services">Services Section</section>
+<section id="contact">Contact Section</section>
 
 <script>
 $(document).ready(function(){
 
+    // Smooth Scroll
     $(".scroll-link").click(function(e){
+
         e.preventDefault();
 
-        let target = $(this).attr("href");
+        let target=$(this).attr("href");
 
-        $("html, body").animate({
-            scrollTop: $(target).offset().top
+        $("html,body").animate({
+            scrollTop:$(target).offset().top-60
         },500);
 
+        if($(window).width()<=768){
+            $(".nav-links").slideUp();
+        }
+
+    });
+
+    // Mobile Menu
+    $(".menu-toggle").click(function(){
+        $(".nav-links").slideToggle();
     });
 
 });

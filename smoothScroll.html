@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colorful Navbar</title>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* Navbar */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 50px;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    position:fixed;
+    top:0;
+    width:100%;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#333;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+/* Different Colors */
+.home{color:#007BFF;}
+.about{color:#28A745;}
+.services{color:#FFC107;}
+.contact{color:#DC3545;}
+
+.home:hover{color:#0056b3;}
+.about:hover{color:#1e7e34;}
+.services:hover{color:#d39e00;}
+.contact:hover{color:#a71d2a;}
+
+/* Button */
+.btn{
+    padding:10px 20px;
+    border:none;
+    background:#007BFF;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#0056b3;
+}
+
+/* Sections */
+section{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+    font-weight:bold;
+    padding-top:70px;
+}
+
+#home{background:#cce5ff;}
+#about{background:#d4edda;}
+#services{background:#fff3cd;}
+#contact{background:#f8d7da;}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">MyLogo</div>
+
+    <ul class="nav-links">
+        <li><a href="#home" class="scroll-link home">Home</a></li>
+        <li><a href="#about" class="scroll-link about">About</a></li>
+        <li><a href="#services" class="scroll-link services">Services</a></li>
+        <li><a href="#contact" class="scroll-link contact">Contact</a></li>
+    </ul>
+
+    <button class="btn">Login</button>
+</nav>
+
+<section id="home">Home</section>
+<section id="about">About</section>
+<section id="services">Services</section>
+<section id="contact">Contact</section>
+
+<script>
+$(document).ready(function(){
+
+    $(".scroll-link").click(function(e){
+        e.preventDefault();
+
+        let target = $(this).attr("href");
+
+        $("html, body").animate({
+            scrollTop: $(target).offset().top
+        },500);
+
+    });
+
+});
+</script>
+
+</body>
+</html>

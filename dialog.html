@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery UI Dialog</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+    <!-- jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+</head>
+<body>
+
+    <button id="btn">Click to Open Dialog</button>
+
+    <div id="dialog-box" title="Welcome">
+        <p>Welcome to jQuery UI Dialog Box</p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#dialog-box").dialog({
+                autoOpen: false
+            });
+
+            $("#btn").click(function () {
+                $("#dialog-box").dialog("open");
+            });
+
+        });
+    </script>
+
+</body>
+</html>
